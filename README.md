@@ -1,2 +1,2 @@
 # word-image-search
-Analyzes a group of images and then uses vector stores and semantic search to find an image given a description.
+Generates image captions for a group of images, then uses embeddings and semantic search to find an image based on a search query.
