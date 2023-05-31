@@ -2,9 +2,13 @@ import chromadb
 from chromadb.utils import embedding_functions
 import pickle
 from chromadb.config import Settings
+import sys
 
+args = sys.argv
 
 images = []
+full_path = "/home/jp/Projects/word-image-search/images"
+
 # {path, description}
 
 class ImageQuery():
@@ -13,6 +17,7 @@ class ImageQuery():
 
         if refresh:
             import imageCaptioner as imageCap
+            imageCap.full_path = full_path
             documents = imageCap.get_docs()
         else:
             with open('imageCache.pickle', 'rb') as handle:
@@ -53,7 +58,7 @@ class ImageQuery():
         )
 
         for data in results['metadatas'][0]:
-            print(data['path'])
+            print(f"{full_path}/{data['path']}")
 
 a = ImageQuery(refresh=False)
-a.query("mountains")
+a.query(args[1])
